@@ -58,8 +58,8 @@
 		} map[] = {
 			{ "Charging",    "+" },
 			{ "Discharging", "-" },
-			{ "Full",        "o" },
-			{ "Not charging", "o" },
+			{ "Full",        "" },
+			{ "Not charging", "" },
 		};
 		size_t i;
 		char path[PATH_MAX], state[12];
@@ -106,7 +106,7 @@
 			h = timeleft;
 			m = (timeleft - (double)h) * 60;
 
-			return bprintf("%juh %jum", h, m);
+			return bprintf(" (%juh %jum)", h, m);
 		}
 
 		return "";

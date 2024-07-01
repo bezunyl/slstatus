@@ -58,7 +58,6 @@ static const char unknown_str[] = "n/a";
  * uid                 UID of current user             NULL
  * uptime              system uptime                   NULL
  * username            username of current user        NULL
- * alsa_master_vol     ALSA Master device volume       NULL
  * vol_perc            OSS/ALSA volume in percent      mixer file (/dev/mixer)
  *                                                     NULL on OpenBSD/FreeBSD
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
@@ -66,5 +65,14 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ datetime, "%s",           "%F %T" },
+	{ keymap, 	"[%s]",  	NULL },
+	{ alsa_master_vol, "[%s]",		NULL},
+	//{ run_command, 	"%s",  	"amixer sget Master | tail -1 | awk '{print $5}' | sed 's/^\[\([0-9]*\)%\].*$/\1/'" }, // this should work but does not (should extract only the number wihout percent and braces)
+	{ disk_perc, 	"[D: %s%%]", "/" },
+	{ cpu_perc, 	"[C: %s%%]",  NULL },
+	{ ram_perc, 	"[R: %s%%]",  NULL },
+	{ battery_state, "[%s",    	"BAT0" },
+	{ battery_perc, "%s%%",    	"BAT0" },
+	{ battery_remaining, "%s]",  "BAT0" },
+	{ datetime, 	"[%s]",         "%F %T" },
 };
